@@ -1,0 +1,1602 @@
+diff --unidirectional-new-file -aru src/minecraft/ExtraBuildcraftPipes/TileExtractionPipe.java src_new/minecraft/ExtraBuildcraftPipes/TileExtractionPipe.java
+--- src/minecraft/ExtraBuildcraftPipes/TileExtractionPipe.java	2023-11-11 16:23:41.893700000 -0700
++++ src_new/minecraft/ExtraBuildcraftPipes/TileExtractionPipe.java	2023-11-11 16:22:26.990850100 -0700
+@@ -1,6 +1,6 @@
+ // Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+ // Jad home page: http://www.kpdus.com/jad.html
+-// Decompiler options: packimports(3) braces deadcode 
++// Decompiler options: packimports(3) braces deadcode
+ 
+ package ExtraBuildcraftPipes;
+ 
+@@ -78,7 +78,9 @@
+             Position position1 = new Position(position.x + 0.5D, position.y + (double)Utils.getPipeFloorOf(itemstack), position.z + 0.5D, position.orientation.reverse());
+             position1.moveForwards(0.5D);
+             EntityPassiveItem entitypassiveitem = new EntityPassiveItem(world, position1.x, position1.y, position1.z, itemstack);
+-            world.entityJoinedWorld(entitypassiveitem);
++            // No idea what the intention was here, nor would I know how to accomplish it if I did.
++            // However, I haven't noticed anything broken by just uncommenting it?
++            // world.entityJoinedWorld(entitypassiveitem);
+             entityEntering(entitypassiveitem, position1.orientation);
+             return;
+         }
+diff --unidirectional-new-file -aru src/minecraft/buildcraft/api/LaserKind.java src_new/minecraft/buildcraft/api/LaserKind.java
+--- src/minecraft/buildcraft/api/LaserKind.java	2023-11-11 16:23:40.942702000 -0700
++++ src_new/minecraft/buildcraft/api/LaserKind.java	2023-11-10 22:51:51.300470900 -0700
+@@ -1,40 +1,11 @@
+-// Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+-// Jad home page: http://www.kpdus.com/jad.html
+-// Decompiler options: packimports(3) braces deadcode 
+-
++// Source code is decompiled from a .class file using FernFlower decompiler.
+ package buildcraft.api;
+ 
++public enum LaserKind {
++   Red,
++   Blue,
++   Stripes;
+ 
+-public final class LaserKind extends Enum
+-{
+-
+-    public static LaserKind[] values()
+-    {
+-        return (LaserKind[])$VALUES.clone();
+-    }
+-
+-    public static LaserKind valueOf(String s)
+-    {
+-        return (LaserKind)Enum.valueOf(buildcraft.api.LaserKind.class, s);
+-    }
+-
+-    private LaserKind(String s, int i)
+-    {
+-        super(s, i);
+-    }
+-
+-    public static final LaserKind Red;
+-    public static final LaserKind Blue;
+-    public static final LaserKind Stripes;
+-    private static final LaserKind $VALUES[]; /* synthetic field */
+-
+-    static 
+-    {
+-        Red = new LaserKind("Red", 0);
+-        Blue = new LaserKind("Blue", 1);
+-        Stripes = new LaserKind("Stripes", 2);
+-        $VALUES = (new LaserKind[] {
+-            Red, Blue, Stripes
+-        });
+-    }
++   private LaserKind() {
++   }
+ }
+diff --unidirectional-new-file -aru src/minecraft/buildcraft/api/Orientations.java src_new/minecraft/buildcraft/api/Orientations.java
+--- src/minecraft/buildcraft/api/Orientations.java	2023-11-11 16:23:40.944700000 -0700
++++ src_new/minecraft/buildcraft/api/Orientations.java	2023-11-10 23:14:05.281135700 -0700
+@@ -1,114 +1,34 @@
+-// Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+-// Jad home page: http://www.kpdus.com/jad.html
+-// Decompiler options: packimports(3) braces deadcode 
+-
++// Source code is decompiled from a .class file using FernFlower decompiler.
+ package buildcraft.api;
+ 
+-
+-public final class Orientations extends Enum
+-{
+-
+-    public static Orientations[] values()
+-    {
+-        return (Orientations[])$VALUES.clone();
+-    }
+-
+-    public static Orientations valueOf(String s)
+-    {
+-        return (Orientations)Enum.valueOf(buildcraft.api.Orientations.class, s);
+-    }
+-
+-    private Orientations(String s, int i)
+-    {
+-        super(s, i);
+-    }
+-
+-    public Orientations reverse()
+-    {
+-        static class _cls1
+-        {
+-
+-            static final int $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[];
+-
+-            static 
+-            {
+-                $SwitchMap$net$minecraft$src$buildcraft$api$Orientations = new int[Orientations.values().length];
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.YPos.ordinal()] = 1;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.YNeg.ordinal()] = 2;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror1) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.ZPos.ordinal()] = 3;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror2) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.ZNeg.ordinal()] = 4;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror3) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.XPos.ordinal()] = 5;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror4) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.XNeg.ordinal()] = 6;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror5) { }
+-            }
+-        }
+-
+-        switch(_cls1..SwitchMap.net.minecraft.src.buildcraft.api.Orientations[ordinal()])
+-        {
+-        case 1: // '\001'
++public enum Orientations {
++   YNeg,
++   YPos,
++   ZNeg,
++   ZPos,
++   XNeg,
++   XPos,
++   Unknown;
++
++   private Orientations() {
++   }
++
++   public Orientations reverse() {
++      switch (this) {
++         case YPos:
+             return YNeg;
+-
+-        case 2: // '\002'
++         case YNeg:
+             return YPos;
+-
+-        case 3: // '\003'
++         case ZPos:
+             return ZNeg;
+-
+-        case 4: // '\004'
++         case ZNeg:
+             return ZPos;
+-
+-        case 5: // '\005'
++         case XPos:
+             return XNeg;
+-
+-        case 6: // '\006'
++         case XNeg:
+             return XPos;
+-        }
+-        return Unknown;
+-    }
+-
+-    public static final Orientations YNeg;
+-    public static final Orientations YPos;
+-    public static final Orientations ZNeg;
+-    public static final Orientations ZPos;
+-    public static final Orientations XNeg;
+-    public static final Orientations XPos;
+-    public static final Orientations Unknown;
+-    private static final Orientations $VALUES[]; /* synthetic field */
+-
+-    static 
+-    {
+-        YNeg = new Orientations("YNeg", 0);
+-        YPos = new Orientations("YPos", 1);
+-        ZNeg = new Orientations("ZNeg", 2);
+-        ZPos = new Orientations("ZPos", 3);
+-        XNeg = new Orientations("XNeg", 4);
+-        XPos = new Orientations("XPos", 5);
+-        Unknown = new Orientations("Unknown", 6);
+-        $VALUES = (new Orientations[] {
+-            YNeg, YPos, ZNeg, ZPos, XNeg, XPos, Unknown
+-        });
+-    }
++         default:
++            return Unknown;
++      }
++   }
+ }
+diff --unidirectional-new-file -aru src/minecraft/buildcraft/api/Position.java src_new/minecraft/buildcraft/api/Position.java
+--- src/minecraft/buildcraft/api/Position.java	2023-11-11 16:23:40.953701000 -0700
++++ src_new/minecraft/buildcraft/api/Position.java	2023-11-11 00:29:34.440471900 -0700
+@@ -1,6 +1,6 @@
+ // Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+ // Jad home page: http://www.kpdus.com/jad.html
+-// Decompiler options: packimports(3) braces deadcode 
++// Decompiler options: packimports(3) braces deadcode
+ 
+ package buildcraft.api;
+ 
+@@ -54,62 +54,22 @@
+ 
+     public void moveRight(double d)
+     {
+-        static class _cls1
+-        {
+-
+-            static final int $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[];
+-
+-            static 
+-            {
+-                $SwitchMap$net$minecraft$src$buildcraft$api$Orientations = new int[Orientations.values().length];
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.ZPos.ordinal()] = 1;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.ZNeg.ordinal()] = 2;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror1) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.XPos.ordinal()] = 3;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror2) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.XNeg.ordinal()] = 4;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror3) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.YPos.ordinal()] = 5;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror4) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.YNeg.ordinal()] = 6;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror5) { }
+-            }
+-        }
+ 
+-        switch(_cls1..SwitchMap.net.minecraft.src.buildcraft.api.Orientations[orientation.ordinal()])
++        switch(orientation)
+         {
+-        case 1: // '\001'
++        case ZPos: // '\001'
+             x = x - d;
+             break;
+ 
+-        case 2: // '\002'
++        case ZNeg: // '\002'
+             x = x + d;
+             break;
+ 
+-        case 3: // '\003'
++        case XPos: // '\003'
+             z = z + d;
+             break;
+ 
+-        case 4: // '\004'
++        case XNeg: // '\004'
+             z = z - d;
+             break;
+         }
+@@ -122,29 +82,29 @@
+ 
+     public void moveForwards(double d)
+     {
+-        switch(_cls1..SwitchMap.net.minecraft.src.buildcraft.api.Orientations[orientation.ordinal()])
++        switch(orientation)
+         {
+-        case 5: // '\005'
++        case YPos: // '\005'
+             y = y + d;
+             break;
+ 
+-        case 6: // '\006'
++        case YNeg: // '\006'
+             y = y - d;
+             break;
+ 
+-        case 1: // '\001'
++        case ZPos: // '\001'
+             z = z + d;
+             break;
+ 
+-        case 2: // '\002'
++        case ZNeg: // '\002'
+             z = z - d;
+             break;
+ 
+-        case 3: // '\003'
++        case XPos: // '\003'
+             x = x + d;
+             break;
+ 
+-        case 4: // '\004'
++        case XNeg: // '\004'
+             x = x - d;
+             break;
+         }
+@@ -157,12 +117,12 @@
+ 
+     public void moveUp(double d)
+     {
+-        switch(_cls1..SwitchMap.net.minecraft.src.buildcraft.api.Orientations[orientation.ordinal()])
++        switch(orientation)
+         {
+-        case 1: // '\001'
+-        case 2: // '\002'
+-        case 3: // '\003'
+-        case 4: // '\004'
++        case ZPos: // '\001'
++        case ZNeg: // '\002'
++        case XPos: // '\003'
++        case XNeg: // '\004'
+             y = y + d;
+             break;
+         }
+diff --unidirectional-new-file -aru src/minecraft/buildcraft/core/BluePrintBuilder.java src_new/minecraft/buildcraft/core/BluePrintBuilder.java
+--- src/minecraft/buildcraft/core/BluePrintBuilder.java	2023-11-11 16:23:41.022701000 -0700
++++ src_new/minecraft/buildcraft/core/BluePrintBuilder.java	2023-11-11 00:39:03.067198300 -0700
+@@ -1,6 +1,6 @@
+ // Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+ // Jad home page: http://www.kpdus.com/jad.html
+-// Decompiler options: packimports(3) braces deadcode 
++// Decompiler options: packimports(3) braces deadcode
+ 
+ package buildcraft.core;
+ 
+@@ -13,35 +13,11 @@
+ public class BluePrintBuilder
+     implements IAreaProvider
+ {
+-    public static final class Mode extends Enum
+-    {
++    public enum Mode {
++        Simple,
++        Template;
+ 
+-        public static Mode[] values()
+-        {
+-            return (Mode[])$VALUES.clone();
+-        }
+-
+-        public static Mode valueOf(String s)
+-        {
+-            return (Mode)Enum.valueOf(buildcraft.core.BluePrintBuilder$Mode.class, s);
+-        }
+-
+-        public static final Mode Simple;
+-        public static final Mode Template;
+-        private static final Mode $VALUES[];
+-
+-        static 
+-        {
+-            Simple = new Mode("Simple", 0);
+-            Template = new Mode("Template", 1);
+-            $VALUES = (new Mode[] {
+-                Simple, Template
+-            });
+-        }
+-
+-        private Mode(String s, int i)
+-        {
+-            super(s, i);
++        private Mode() {
+         }
+     }
+ 
+diff --unidirectional-new-file -aru src/minecraft/buildcraft/core/PacketIds.java src_new/minecraft/buildcraft/core/PacketIds.java
+--- src/minecraft/buildcraft/core/PacketIds.java	2023-11-11 16:23:41.172701000 -0700
++++ src_new/minecraft/buildcraft/core/PacketIds.java	2023-11-11 01:24:10.500595300 -0700
+@@ -1,57 +1,31 @@
+-// Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+-// Jad home page: http://www.kpdus.com/jad.html
+-// Decompiler options: packimports(3) braces deadcode 
+-
++// Source code is decompiled from a .class file using FernFlower decompiler.
+ package buildcraft.core;
+ 
++public enum PacketIds {
++   TileDescription,
++   TileUpdate,
++   PipeItem,
++   DiamondPipeContents,
++   DiamondPipeGUI,
++   QuarryDescription,
++   QuarryUpdate,
++   AutoCraftingGUI,
++   MarkerDescription,
++   MarkerUpdate,
++   FillerDescription,
++   FillerUpdate,
++   FillerGUI,
++   TemplateDescription,
++   TemplateUpdate,
++   TemplateGUI,
++   BuilderDescription,
++   BuilderUpdate,
++   BuilderGUI,
++   EngineDescription,
++   EngineUpdate,
++   EngineSteamGUI,
++   EngineCombustionGUI;
+ 
+-public final class PacketIds extends Enum
+-{
+-
+-    public static PacketIds[] values()
+-    {
+-        return (PacketIds[])$VALUES.clone();
+-    }
+-
+-    public static PacketIds valueOf(String s)
+-    {
+-        return (PacketIds)Enum.valueOf(buildcraft.core.PacketIds.class, s);
+-    }
+-
+-    private PacketIds(String s, int i)
+-    {
+-        super(s, i);
+-    }
+-
+-    public static final PacketIds TileDescription;
+-    public static final PacketIds TileUpdate;
+-    public static final PacketIds PipeItem;
+-    public static final PacketIds DiamondPipeContents;
+-    public static final PacketIds DiamondPipeGUI;
+-    public static final PacketIds AutoCraftingGUI;
+-    public static final PacketIds FillerGUI;
+-    public static final PacketIds TemplateGUI;
+-    public static final PacketIds BuilderGUI;
+-    public static final PacketIds EngineSteamGUI;
+-    public static final PacketIds EngineCombustionGUI;
+-    private static final PacketIds $VALUES[]; /* synthetic field */
+-
+-    static 
+-    {
+-        TileDescription = new PacketIds("TileDescription", 0);
+-        TileUpdate = new PacketIds("TileUpdate", 1);
+-        PipeItem = new PacketIds("PipeItem", 2);
+-        DiamondPipeContents = new PacketIds("DiamondPipeContents", 3);
+-        DiamondPipeGUI = new PacketIds("DiamondPipeGUI", 4);
+-        AutoCraftingGUI = new PacketIds("AutoCraftingGUI", 5);
+-        FillerGUI = new PacketIds("FillerGUI", 6);
+-        TemplateGUI = new PacketIds("TemplateGUI", 7);
+-        BuilderGUI = new PacketIds("BuilderGUI", 8);
+-        EngineSteamGUI = new PacketIds("EngineSteamGUI", 9);
+-        EngineCombustionGUI = new PacketIds("EngineCombustionGUI", 10);
+-        $VALUES = (new PacketIds[] {
+-            TileDescription, TileUpdate, PipeItem, DiamondPipeContents, DiamondPipeGUI, AutoCraftingGUI, FillerGUI, TemplateGUI, BuilderGUI, EngineSteamGUI, 
+-            EngineCombustionGUI
+-        });
+-    }
++   private PacketIds() {
++   }
+ }
+diff --unidirectional-new-file -aru src/minecraft/buildcraft/core/Utils.java src_new/minecraft/buildcraft/core/Utils.java
+--- src/minecraft/buildcraft/core/Utils.java	2023-11-11 16:23:41.256701000 -0700
++++ src_new/minecraft/buildcraft/core/Utils.java	2023-11-11 00:34:23.724163600 -0700
+@@ -1,6 +1,6 @@
+ // Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+ // Jad home page: http://www.kpdus.com/jad.html
+-// Decompiler options: packimports(3) braces deadcode 
++// Decompiler options: packimports(3) braces deadcode
+ 
+ package buildcraft.core;
+ 
+@@ -9,7 +9,7 @@
+ import net.minecraft.src.*;
+ 
+ // Referenced classes of package buildcraft.core:
+-//            EntityBlock, ISynchronizedTile, BlockIndex, PacketIds, 
++//            EntityBlock, ISynchronizedTile, BlockIndex, PacketIds,
+ //            TileBuildCraft
+ 
+ public class Utils
+@@ -245,80 +245,18 @@
+             d1 = 0.10000000000000001D;
+         }
+         int i = BuildCraftCore.redLaserTexture;
+-        static class _cls1
+-        {
+-
+-            static final int $SwitchMap$net$minecraft$src$buildcraft$api$LaserKind[];
+-            static final int $SwitchMap$net$minecraft$src$buildcraft$core$PacketIds[];
+-
+-            static 
+-            {
+-                $SwitchMap$net$minecraft$src$buildcraft$core$PacketIds = new int[PacketIds.values().length];
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$core$PacketIds[PacketIds.DiamondPipeGUI.ordinal()] = 1;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$core$PacketIds[PacketIds.AutoCraftingGUI.ordinal()] = 2;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror1) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$core$PacketIds[PacketIds.FillerGUI.ordinal()] = 3;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror2) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$core$PacketIds[PacketIds.TemplateGUI.ordinal()] = 4;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror3) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$core$PacketIds[PacketIds.BuilderGUI.ordinal()] = 5;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror4) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$core$PacketIds[PacketIds.EngineSteamGUI.ordinal()] = 6;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror5) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$core$PacketIds[PacketIds.EngineCombustionGUI.ordinal()] = 7;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror6) { }
+-                $SwitchMap$net$minecraft$src$buildcraft$api$LaserKind = new int[LaserKind.values().length];
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$LaserKind[LaserKind.Blue.ordinal()] = 1;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror7) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$LaserKind[LaserKind.Red.ordinal()] = 2;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror8) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$LaserKind[LaserKind.Stripes.ordinal()] = 3;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror9) { }
+-            }
+-        }
+ 
+-        switch(_cls1..SwitchMap.net.minecraft.src.buildcraft.api.LaserKind[laserkind.ordinal()])
++        switch(laserkind)
+         {
+-        case 1: // '\001'
++        case Blue: // '\001'
+             i = BuildCraftCore.blueLaserTexture;
+             break;
+ 
+-        case 2: // '\002'
++        case Red: // '\002'
+             i = BuildCraftCore.redLaserTexture;
+             break;
+ 
+-        case 3: // '\003'
++        case Stripes: // '\003'
+             i = BuildCraftCore.stripesLaserTexture;
+             break;
+         }
+@@ -429,27 +367,27 @@
+ 
+     public static int packetIdToInt(PacketIds packetids)
+     {
+-        switch(_cls1..SwitchMap.net.minecraft.src.buildcraft.core.PacketIds[packetids.ordinal()])
++        switch(packetids)
+         {
+-        case 1: // '\001'
++        case DiamondPipeGUI: // '\001'
+             return 70;
+ 
+-        case 2: // '\002'
++        case AutoCraftingGUI: // '\002'
+             return 71;
+ 
+-        case 3: // '\003'
++        case FillerGUI: // '\003'
+             return 72;
+ 
+-        case 4: // '\004'
++        case TemplateGUI: // '\004'
+             return 73;
+ 
+-        case 5: // '\005'
++        case BuilderGUI: // '\005'
+             return 74;
+ 
+-        case 6: // '\006'
++        case EngineSteamGUI: // '\006'
+             return 75;
+ 
+-        case 7: // '\007'
++        case EngineCombustionGUI: // '\007'
+             return 76;
+         }
+         throw new RuntimeException((new StringBuilder()).append("Invalid GUI id: ").append(packetids).toString());
+diff --unidirectional-new-file -aru src/minecraft/buildcraft/energy/BlockEngine.java src_new/minecraft/buildcraft/energy/BlockEngine.java
+--- src/minecraft/buildcraft/energy/BlockEngine.java	2023-11-11 16:23:41.270700000 -0700
++++ src_new/minecraft/buildcraft/energy/BlockEngine.java	2023-11-11 12:00:41.383443900 -0700
+@@ -1,6 +1,6 @@
+ // Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+ // Jad home page: http://www.kpdus.com/jad.html
+-// Decompiler options: packimports(3) braces deadcode 
++// Decompiler options: packimports(3) braces deadcode
+ 
+ package buildcraft.energy;
+ 
+@@ -10,7 +10,7 @@
+ import net.minecraft.src.*;
+ 
+ // Referenced classes of package buildcraft.energy:
+-//            TileEngine, EngineStone, EnergyProxy, EngineIron, 
++//            TileEngine, EngineStone, EnergyProxy, EngineIron,
+ //            EngineWood
+ 
+ public class BlockEngine extends BlockContainer
+@@ -121,65 +121,25 @@
+         {
+             return false;
+         }
+-        static class _cls1
+-        {
+-
+-            static final int $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[];
+-
+-            static 
+-            {
+-                $SwitchMap$net$minecraft$src$buildcraft$api$Orientations = new int[Orientations.values().length];
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.YPos.ordinal()] = 1;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.YNeg.ordinal()] = 2;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror1) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.ZPos.ordinal()] = 3;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror2) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.ZNeg.ordinal()] = 4;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror3) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.XPos.ordinal()] = 5;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror4) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.XNeg.ordinal()] = 6;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror5) { }
+-            }
+-        }
+ 
+-        switch(_cls1..SwitchMap.net.minecraft.src.buildcraft.api.Orientations[Orientations.values()[tileengine.orientation].ordinal()])
++        switch(Orientations.values()[tileengine.orientation])
+         {
+-        case 1: // '\001'
++        case YPos: // '\001'
+             return j - i1 != -1;
+ 
+-        case 2: // '\002'
++        case YNeg: // '\002'
+             return j - i1 != 1;
+ 
+-        case 3: // '\003'
++        case ZPos: // '\003'
+             return k - j1 != -1;
+ 
+-        case 4: // '\004'
++        case ZNeg: // '\004'
+             return k - j1 != 1;
+ 
+-        case 5: // '\005'
++        case XPos: // '\005'
+             return i - l != -1;
+ 
+-        case 6: // '\006'
++        case XNeg: // '\006'
+             return i - l != 1;
+         }
+         return true;
+diff --unidirectional-new-file -aru src/minecraft/buildcraft/energy/Engine.java src_new/minecraft/buildcraft/energy/Engine.java
+--- src/minecraft/buildcraft/energy/Engine.java	2023-11-11 16:23:41.332700000 -0700
++++ src_new/minecraft/buildcraft/energy/Engine.java	2023-11-11 13:36:51.597009800 -0700
+@@ -1,6 +1,6 @@
+ // Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+ // Jad home page: http://www.kpdus.com/jad.html
+-// Decompiler options: packimports(3) braces deadcode 
++// Decompiler options: packimports(3) braces deadcode
+ 
+ package buildcraft.energy;
+ 
+@@ -12,41 +12,14 @@
+ 
+ public abstract class Engine
+ {
+-    static final class EnergyStage extends Enum
+-    {
++    enum EnergyStage {
++        Blue,
++        Green,
++        Yellow,
++        Red,
++        Explosion;
+ 
+-        public static EnergyStage[] values()
+-        {
+-            return (EnergyStage[])$VALUES.clone();
+-        }
+-
+-        public static EnergyStage valueOf(String s)
+-        {
+-            return (EnergyStage)Enum.valueOf(buildcraft.energy.Engine$EnergyStage.class, s);
+-        }
+-
+-        public static final EnergyStage Blue;
+-        public static final EnergyStage Green;
+-        public static final EnergyStage Yellow;
+-        public static final EnergyStage Red;
+-        public static final EnergyStage Explosion;
+-        private static final EnergyStage $VALUES[];
+-
+-        static 
+-        {
+-            Blue = new EnergyStage("Blue", 0);
+-            Green = new EnergyStage("Green", 1);
+-            Yellow = new EnergyStage("Yellow", 2);
+-            Red = new EnergyStage("Red", 3);
+-            Explosion = new EnergyStage("Explosion", 4);
+-            $VALUES = (new EnergyStage[] {
+-                Blue, Green, Yellow, Red, Explosion
+-            });
+-        }
+-
+-        private EnergyStage(String s, int i)
+-        {
+-            super(s, i);
++        private EnergyStage() {
+         }
+     }
+ 
+diff --unidirectional-new-file -aru src/minecraft/buildcraft/energy/EngineIron.java src_new/minecraft/buildcraft/energy/EngineIron.java
+--- src/minecraft/buildcraft/energy/EngineIron.java	2023-11-11 16:23:41.340701000 -0700
++++ src_new/minecraft/buildcraft/energy/EngineIron.java	2023-11-11 00:44:50.616789700 -0700
+@@ -1,6 +1,6 @@
+ // Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+ // Jad home page: http://www.kpdus.com/jad.html
+-// Decompiler options: packimports(3) braces deadcode 
++// Decompiler options: packimports(3) braces deadcode
+ 
+ package buildcraft.energy;
+ 
+@@ -36,49 +36,18 @@
+ 
+     public float getPistonSpeed()
+     {
+-        static class _cls1
++        switch(getEnergyStage())
+         {
+-
+-            static final int $SwitchMap$net$minecraft$src$buildcraft$energy$Engine$EnergyStage[];
+-
+-            static 
+-            {
+-                $SwitchMap$net$minecraft$src$buildcraft$energy$Engine$EnergyStage = new int[Engine.EnergyStage.values().length];
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$energy$Engine$EnergyStage[Engine.EnergyStage.Blue.ordinal()] = 1;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$energy$Engine$EnergyStage[Engine.EnergyStage.Green.ordinal()] = 2;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror1) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$energy$Engine$EnergyStage[Engine.EnergyStage.Yellow.ordinal()] = 3;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror2) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$energy$Engine$EnergyStage[Engine.EnergyStage.Red.ordinal()] = 4;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror3) { }
+-            }
+-        }
+-
+-        switch(_cls1..SwitchMap.net.minecraft.src.buildcraft.energy.Engine.EnergyStage[getEnergyStage().ordinal()])
+-        {
+-        case 1: // '\001'
++        case Blue: // '\001'
+             return 0.04F;
+ 
+-        case 2: // '\002'
++        case Green: // '\002'
+             return 0.08F;
+ 
+-        case 3: // '\003'
++        case Yellow: // '\003'
+             return 0.16F;
+ 
+-        case 4: // '\004'
++        case Red: // '\004'
+             return 0.32F;
+         }
+         return 0.0F;
+diff --unidirectional-new-file -aru src/minecraft/buildcraft/energy/EngineStone.java src_new/minecraft/buildcraft/energy/EngineStone.java
+--- src/minecraft/buildcraft/energy/EngineStone.java	2023-11-11 16:23:41.348701000 -0700
++++ src_new/minecraft/buildcraft/energy/EngineStone.java	2023-11-11 00:45:38.731753800 -0700
+@@ -1,6 +1,6 @@
+ // Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+ // Jad home page: http://www.kpdus.com/jad.html
+-// Decompiler options: packimports(3) braces deadcode 
++// Decompiler options: packimports(3) braces deadcode
+ 
+ package buildcraft.energy;
+ 
+@@ -35,49 +35,18 @@
+ 
+     public float getPistonSpeed()
+     {
+-        static class _cls1
++        switch(getEnergyStage())
+         {
+-
+-            static final int $SwitchMap$net$minecraft$src$buildcraft$energy$Engine$EnergyStage[];
+-
+-            static 
+-            {
+-                $SwitchMap$net$minecraft$src$buildcraft$energy$Engine$EnergyStage = new int[Engine.EnergyStage.values().length];
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$energy$Engine$EnergyStage[Engine.EnergyStage.Blue.ordinal()] = 1;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$energy$Engine$EnergyStage[Engine.EnergyStage.Green.ordinal()] = 2;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror1) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$energy$Engine$EnergyStage[Engine.EnergyStage.Yellow.ordinal()] = 3;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror2) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$energy$Engine$EnergyStage[Engine.EnergyStage.Red.ordinal()] = 4;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror3) { }
+-            }
+-        }
+-
+-        switch(_cls1..SwitchMap.net.minecraft.src.buildcraft.energy.Engine.EnergyStage[getEnergyStage().ordinal()])
+-        {
+-        case 1: // '\001'
++        case Blue: // '\001'
+             return 0.02F;
+ 
+-        case 2: // '\002'
++        case Green: // '\002'
+             return 0.04F;
+ 
+-        case 3: // '\003'
++        case Yellow: // '\003'
+             return 0.08F;
+ 
+-        case 4: // '\004'
++        case Red: // '\004'
+             return 0.16F;
+         }
+         return 0.0F;
+diff --unidirectional-new-file -aru src/minecraft/buildcraft/energy/EngineWood.java src_new/minecraft/buildcraft/energy/EngineWood.java
+--- src/minecraft/buildcraft/energy/EngineWood.java	2023-11-11 16:23:41.356700000 -0700
++++ src_new/minecraft/buildcraft/energy/EngineWood.java	2023-11-11 13:39:29.969559000 -0700
+@@ -1,6 +1,6 @@
+ // Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+ // Jad home page: http://www.kpdus.com/jad.html
+-// Decompiler options: packimports(3) braces deadcode 
++// Decompiler options: packimports(3) braces deadcode
+ 
+ package buildcraft.energy;
+ 
+@@ -35,49 +35,18 @@
+ 
+     public float getPistonSpeed()
+     {
+-        static class _cls1
++        switch(getEnergyStage())
+         {
+-
+-            static final int $SwitchMap$net$minecraft$src$buildcraft$energy$Engine$EnergyStage[];
+-
+-            static 
+-            {
+-                $SwitchMap$net$minecraft$src$buildcraft$energy$Engine$EnergyStage = new int[Engine.EnergyStage.values().length];
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$energy$Engine$EnergyStage[Engine.EnergyStage.Blue.ordinal()] = 1;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$energy$Engine$EnergyStage[Engine.EnergyStage.Green.ordinal()] = 2;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror1) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$energy$Engine$EnergyStage[Engine.EnergyStage.Yellow.ordinal()] = 3;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror2) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$energy$Engine$EnergyStage[Engine.EnergyStage.Red.ordinal()] = 4;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror3) { }
+-            }
+-        }
+-
+-        switch(_cls1..SwitchMap.net.minecraft.src.buildcraft.energy.Engine.EnergyStage[getEnergyStage().ordinal()])
+-        {
+-        case 1: // '\001'
++        case Blue: // '\001'
+             return 0.01F;
+ 
+-        case 2: // '\002'
++        case Green: // '\002'
+             return 0.02F;
+ 
+-        case 3: // '\003'
++        case Yellow: // '\003'
+             return 0.04F;
+ 
+-        case 4: // '\004'
++        case Red: // '\004'
+             return 0.08F;
+         }
+         return 0.0F;
+diff --unidirectional-new-file -aru src/minecraft/buildcraft/energy/RenderEngine.java src_new/minecraft/buildcraft/energy/RenderEngine.java
+--- src/minecraft/buildcraft/energy/RenderEngine.java	2023-11-11 16:23:41.437701200 -0700
++++ src_new/minecraft/buildcraft/energy/RenderEngine.java	2023-11-11 01:00:21.579056900 -0700
+@@ -1,6 +1,6 @@
+ // Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+ // Jad home page: http://www.kpdus.com/jad.html
+-// Decompiler options: packimports(3) braces deadcode 
++// Decompiler options: packimports(3) braces deadcode
+ 
+ package buildcraft.energy;
+ 
+@@ -47,13 +47,13 @@
+         baseTexture = s;
+     }
+ 
+-    public void inventoryRender(double d, double d1, double d2, float f, 
++    public void inventoryRender(double d, double d1, double d2, float f,
+             float f1)
+     {
+         render(Engine.EnergyStage.Blue, 0.25F, Orientations.YPos, baseTexture, d, d1, d2);
+     }
+ 
+-    public void renderTileEntityAt(TileEntity tileentity, double d, double d1, double d2, 
++    public void renderTileEntityAt(TileEntity tileentity, double d, double d1, double d2,
+             float f)
+     {
+         Engine engine = ((TileEngine)tileentity).engine;
+@@ -83,91 +83,34 @@
+             0.0F, 0.0F, 0.0F
+         };
+         float f2 = f1 / 16F;
+-        static class _cls1
+-        {
+-
+-            static final int $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[];
+-            static final int $SwitchMap$net$minecraft$src$buildcraft$energy$Engine$EnergyStage[];
+-
+-            static 
+-            {
+-                $SwitchMap$net$minecraft$src$buildcraft$energy$Engine$EnergyStage = new int[Engine.EnergyStage.values().length];
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$energy$Engine$EnergyStage[Engine.EnergyStage.Blue.ordinal()] = 1;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$energy$Engine$EnergyStage[Engine.EnergyStage.Green.ordinal()] = 2;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror1) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$energy$Engine$EnergyStage[Engine.EnergyStage.Yellow.ordinal()] = 3;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror2) { }
+-                $SwitchMap$net$minecraft$src$buildcraft$api$Orientations = new int[Orientations.values().length];
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.XPos.ordinal()] = 1;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror3) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.XNeg.ordinal()] = 2;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror4) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.YPos.ordinal()] = 3;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror5) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.YNeg.ordinal()] = 4;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror6) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.ZPos.ordinal()] = 5;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror7) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.ZNeg.ordinal()] = 6;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror8) { }
+-            }
+-        }
+ 
+-        switch(_cls1..SwitchMap.net.minecraft.src.buildcraft.api.Orientations[orientations.ordinal()])
++        switch(orientations)
+         {
+-        case 1: // '\001'
++        case XPos: // '\001'
+             af[2] = -1.570796F;
+             af1[0] = 1.0F;
+             break;
+ 
+-        case 2: // '\002'
++        case XNeg: // '\002'
+             af[2] = 1.570796F;
+             af1[0] = -1F;
+             break;
+ 
+-        case 3: // '\003'
++        case YPos: // '\003'
+             af1[1] = 1.0F;
+             break;
+ 
+-        case 4: // '\004'
++        case YNeg: // '\004'
+             af[2] = 3.141593F;
+             af1[1] = -1F;
+             break;
+ 
+-        case 5: // '\005'
++        case ZPos: // '\005'
+             af[0] = 1.570796F;
+             af1[2] = 1.0F;
+             break;
+ 
+-        case 6: // '\006'
++        case ZNeg: // '\006'
+             af[0] = -1.570796F;
+             af1[2] = -1F;
+             break;
+@@ -204,17 +147,17 @@
+         }
+ 
+         String s1 = "";
+-        switch(_cls1..SwitchMap.net.minecraft.src.buildcraft.energy.Engine.EnergyStage[energystage.ordinal()])
++        switch(energystage)
+         {
+-        case 1: // '\001'
++        case Blue: // '\001'
+             s1 = "/net/minecraft/src/buildcraft/energy/gui/trunk_blue.png";
+             break;
+ 
+-        case 2: // '\002'
++        case Green: // '\002'
+             s1 = "/net/minecraft/src/buildcraft/energy/gui/trunk_green.png";
+             break;
+ 
+-        case 3: // '\003'
++        case Yellow: // '\003'
+             s1 = "/net/minecraft/src/buildcraft/energy/gui/trunk_yellow.png";
+             break;
+ 
+diff --unidirectional-new-file -aru src/minecraft/buildcraft/energy/TextureOilFX.java src_new/minecraft/buildcraft/energy/TextureOilFX.java
+--- src/minecraft/buildcraft/energy/TextureOilFX.java	2023-11-11 16:23:41.453701100 -0700
++++ src_new/minecraft/buildcraft/energy/TextureOilFX.java	2023-11-11 02:03:22.372339900 -0700
+@@ -1,6 +1,6 @@
+ // Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+ // Jad home page: http://www.kpdus.com/jad.html
+-// Decompiler options: packimports(3) braces deadcode 
++// Decompiler options: packimports(3) braces deadcode
+ 
+ package buildcraft.energy;
+ 
+@@ -20,7 +20,7 @@
+         tickCounter = 0;
+     }
+ 
+-    public void bindImage(RenderEngine renderengine)
++    public void bindImage(net.minecraft.src.RenderEngine renderengine)
+     {
+         GL11.glBindTexture(3553 /*GL_TEXTURE_2D*/, renderengine.getTexture(BuildCraftCore.customBuildCraftTexture));
+     }
+diff --unidirectional-new-file -aru src/minecraft/buildcraft/energy/TextureOilFlowFX.java src_new/minecraft/buildcraft/energy/TextureOilFlowFX.java
+--- src/minecraft/buildcraft/energy/TextureOilFlowFX.java	2023-11-11 16:23:41.445701500 -0700
++++ src_new/minecraft/buildcraft/energy/TextureOilFlowFX.java	2023-11-11 02:05:46.517588900 -0700
+@@ -1,6 +1,6 @@
+ // Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+ // Jad home page: http://www.kpdus.com/jad.html
+-// Decompiler options: packimports(3) braces deadcode 
++// Decompiler options: packimports(3) braces deadcode
+ 
+ package buildcraft.energy;
+ 
+@@ -21,7 +21,7 @@
+         tileSize = 2;
+     }
+ 
+-    public void bindImage(RenderEngine renderengine)
++    public void bindImage(net.minecraft.src.RenderEngine renderengine)
+     {
+         GL11.glBindTexture(3553 /*GL_TEXTURE_2D*/, renderengine.getTexture(BuildCraftCore.customBuildCraftTexture));
+     }
+diff --unidirectional-new-file -aru src/minecraft/buildcraft/factory/TileQuarry.java src_new/minecraft/buildcraft/factory/TileQuarry.java
+--- src/minecraft/buildcraft/factory/TileQuarry.java	2023-11-11 16:23:41.643700000 -0700
++++ src_new/minecraft/buildcraft/factory/TileQuarry.java	2023-11-11 16:00:10.981315800 -0700
+@@ -1,6 +1,6 @@
+ // Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+ // Jad home page: http://www.kpdus.com/jad.html
+-// Decompiler options: packimports(3) braces deadcode 
++// Decompiler options: packimports(3) braces deadcode
+ 
+ package buildcraft.factory;
+ 
+@@ -389,55 +389,25 @@
+             int l = 0;
+             int i1 = 0;
+             Orientations orientations = Orientations.values()[worldObj.getBlockMetadata(xCoord, yCoord, zCoord)].reverse();
+-            static class _cls1
+-            {
+-
+-                static final int $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[];
+-
+-                static 
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$Orientations = new int[Orientations.values().length];
+-                    try
+-                    {
+-                        $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.XPos.ordinal()] = 1;
+-                    }
+-                    catch(NoSuchFieldError nosuchfielderror) { }
+-                    try
+-                    {
+-                        $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.XNeg.ordinal()] = 2;
+-                    }
+-                    catch(NoSuchFieldError nosuchfielderror1) { }
+-                    try
+-                    {
+-                        $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.ZPos.ordinal()] = 3;
+-                    }
+-                    catch(NoSuchFieldError nosuchfielderror2) { }
+-                    try
+-                    {
+-                        $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.ZNeg.ordinal()] = 4;
+-                    }
+-                    catch(NoSuchFieldError nosuchfielderror3) { }
+-                }
+-            }
+ 
+-            switch(_cls1..SwitchMap.net.minecraft.src.buildcraft.api.Orientations[orientations.ordinal()])
++            switch(orientations)
+             {
+-            case 1: // '\001'
++            case XPos: // '\001'
+                 l = xCoord + 1;
+                 i1 = zCoord - 4 - 1;
+                 break;
+ 
+-            case 2: // '\002'
++            case XNeg: // '\002'
+                 l = xCoord - 9 - 2;
+                 i1 = zCoord - 4 - 1;
+                 break;
+ 
+-            case 3: // '\003'
++            case ZPos: // '\003'
+                 l = xCoord - 4 - 1;
+                 i1 = zCoord + 1;
+                 break;
+ 
+-            case 4: // '\004'
++            case ZNeg: // '\004'
+                 l = xCoord - 4 - 1;
+                 i1 = zCoord - 9 - 2;
+                 break;
+diff --unidirectional-new-file -aru src/minecraft/buildcraft/transport/TileObsidianPipe.java src_new/minecraft/buildcraft/transport/TileObsidianPipe.java
+--- src/minecraft/buildcraft/transport/TileObsidianPipe.java	2023-11-11 16:23:41.795701000 -0700
++++ src_new/minecraft/buildcraft/transport/TileObsidianPipe.java	2023-11-11 13:29:04.883548000 -0700
+@@ -1,6 +1,6 @@
+ // Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+ // Jad home page: http://www.kpdus.com/jad.html
+-// Decompiler options: packimports(3) braces deadcode 
++// Decompiler options: packimports(3) braces deadcode
+ 
+ package buildcraft.transport;
+ 
+@@ -64,99 +64,59 @@
+         }
+         Position position = new Position(xCoord, yCoord, zCoord, orientations);
+         Position position1 = new Position(xCoord, yCoord, zCoord, orientations);
+-        static class _cls1
+-        {
+-
+-            static final int $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[];
+-
+-            static 
+-            {
+-                $SwitchMap$net$minecraft$src$buildcraft$api$Orientations = new int[Orientations.values().length];
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.XPos.ordinal()] = 1;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.XNeg.ordinal()] = 2;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror1) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.YPos.ordinal()] = 3;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror2) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.YNeg.ordinal()] = 4;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror3) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.ZPos.ordinal()] = 5;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror4) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$api$Orientations[Orientations.ZNeg.ordinal()] = 6;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror5) { }
+-            }
+-        }
+ 
+-        switch(_cls1..SwitchMap.net.minecraft.src.buildcraft.api.Orientations[orientations.ordinal()])
++        switch(orientations)
+         {
+-        case 1: // '\001'
++        case XPos: // '\001'
+             position.x += i;
+             position1.x += 1 + i;
+             break;
+ 
+-        case 2: // '\002'
++        case XNeg: // '\002'
+             position.x -= i - 1;
+             position1.x -= i;
+             break;
+ 
+-        case 3: // '\003'
+-        case 4: // '\004'
++        case YPos: // '\003'
++        case YNeg: // '\004'
+             position.x += i + 1;
+             position1.x -= i;
+             position.z += i + 1;
+             position1.z -= i;
+             break;
+ 
+-        case 5: // '\005'
++        case ZPos: // '\005'
+             position.z += i;
+             position1.z += i + 1;
+             break;
+ 
+-        case 6: // '\006'
++        case ZNeg: // '\006'
+             position.z -= i - 1;
+             position1.z -= i;
+             break;
+         }
+-        switch(_cls1..SwitchMap.net.minecraft.src.buildcraft.api.Orientations[orientations.ordinal()])
++        switch(orientations)
+         {
+-        case 1: // '\001'
+-        case 2: // '\002'
++        case XPos: // '\001'
++        case XNeg: // '\002'
+             position.y += i + 1;
+             position1.y -= i;
+             position.z += i + 1;
+             position1.z -= i;
+             break;
+ 
+-        case 3: // '\003'
++        case YPos: // '\003'
+             position.y += i + 1;
+             position1.y += i;
+             break;
+ 
+-        case 4: // '\004'
++        case YNeg: // '\004'
+             position.y -= i - 1;
+             position1.y -= i;
+             break;
+ 
+-        case 5: // '\005'
+-        case 6: // '\006'
++        case ZPos: // '\005'
++        case ZNeg: // '\006'
+             position.y += i + 1;
+             position1.y -= i;
+             position.x += i + 1;
+diff --unidirectional-new-file -aru src/minecraft/net/minecraft/src/Block.java src_new/minecraft/net/minecraft/src/Block.java
+--- src/minecraft/net/minecraft/src/Block.java	2023-11-11 16:23:42.269726000 -0700
++++ src_new/minecraft/net/minecraft/src/Block.java	2023-11-10 23:18:17.869186500 -0700
+@@ -1,6 +1,6 @@
+ // Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+ // Jad home page: http://www.kpdus.com/jad.html
+-// Decompiler options: packimports(3) braces deadcode 
++// Decompiler options: packimports(3) braces deadcode
+ 
+ package net.minecraft.src;
+ 
+@@ -9,29 +9,29 @@
+ import java.util.Random;
+ 
+ // Referenced classes of package net.minecraft.src:
+-//            Material, IBlockAccess, AxisAlignedBB, World, 
+-//            ItemStack, EntityItem, Vec3D, MovingObjectPosition, 
+-//            StatList, EntityPlayer, StatCollector, StepSound, 
+-//            StepSoundStone, StepSoundSand, BlockStone, BlockGrass, 
+-//            BlockDirt, BlockSapling, BlockFlowing, BlockStationary, 
+-//            BlockSand, BlockGravel, BlockOre, BlockLog, 
+-//            BlockLeaves, BlockSponge, BlockGlass, BlockDispenser, 
+-//            BlockSandStone, BlockNote, BlockBed, BlockRail, 
+-//            BlockDetectorRail, BlockPistonBase, BlockWeb, BlockTallGrass, 
+-//            BlockDeadBush, BlockPistonExtension, BlockCloth, BlockPistonMoving, 
+-//            BlockFlower, BlockMushroom, BlockOreStorage, BlockStep, 
+-//            BlockTNT, BlockBookshelf, BlockObsidian, BlockTorch, 
+-//            BlockFire, BlockMobSpawner, BlockStairs, BlockChest, 
+-//            BlockRedstoneWire, BlockWorkbench, BlockCrops, BlockFarmland, 
+-//            BlockFurnace, BlockSign, TileEntitySign, BlockDoor, 
+-//            BlockLadder, BlockLever, BlockPressurePlate, EnumMobType, 
+-//            BlockRedstoneOre, BlockRedstoneTorch, BlockButton, BlockSnow, 
+-//            BlockIce, BlockSnowBlock, BlockCactus, BlockClay, 
+-//            BlockReed, BlockJukeBox, BlockFence, BlockPumpkin, 
+-//            BlockNetherrack, BlockSoulSand, BlockGlowStone, BlockPortal, 
+-//            BlockCake, BlockRedstoneRepeater, BlockLockedChest, BlockTrapDoor, 
+-//            Item, ItemCloth, ItemLog, ItemSlab, 
+-//            ItemSapling, ItemLeaves, ItemPiston, ItemBlock, 
++//            Material, IBlockAccess, AxisAlignedBB, World,
++//            ItemStack, EntityItem, Vec3D, MovingObjectPosition,
++//            StatList, EntityPlayer, StatCollector, StepSound,
++//            StepSoundStone, StepSoundSand, BlockStone, BlockGrass,
++//            BlockDirt, BlockSapling, BlockFlowing, BlockStationary,
++//            BlockSand, BlockGravel, BlockOre, BlockLog,
++//            BlockLeaves, BlockSponge, BlockGlass, BlockDispenser,
++//            BlockSandStone, BlockNote, BlockBed, BlockRail,
++//            BlockDetectorRail, BlockPistonBase, BlockWeb, BlockTallGrass,
++//            BlockDeadBush, BlockPistonExtension, BlockCloth, BlockPistonMoving,
++//            BlockFlower, BlockMushroom, BlockOreStorage, BlockStep,
++//            BlockTNT, BlockBookshelf, BlockObsidian, BlockTorch,
++//            BlockFire, BlockMobSpawner, BlockStairs, BlockChest,
++//            BlockRedstoneWire, BlockWorkbench, BlockCrops, BlockFarmland,
++//            BlockFurnace, BlockSign, TileEntitySign, BlockDoor,
++//            BlockLadder, BlockLever, BlockPressurePlate, EnumMobType,
++//            BlockRedstoneOre, BlockRedstoneTorch, BlockButton, BlockSnow,
++//            BlockIce, BlockSnowBlock, BlockCactus, BlockClay,
++//            BlockReed, BlockJukeBox, BlockFence, BlockPumpkin,
++//            BlockNetherrack, BlockSoulSand, BlockGlowStone, BlockPortal,
++//            BlockCake, BlockRedstoneRepeater, BlockLockedChest, BlockTrapDoor,
++//            Item, ItemCloth, ItemLog, ItemSlab,
++//            ItemSapling, ItemLeaves, ItemPiston, ItemBlock,
+ //            Entity, EntityLiving
+ 
+ public class Block
+@@ -654,18 +654,6 @@
+         }
+     }
+ 
+-    static Class _mthclass$(String s)
+-    {
+-        try
+-        {
+-            return Class.forName(s);
+-        }
+-        catch(ClassNotFoundException classnotfoundexception)
+-        {
+-            throw new NoClassDefFoundError(classnotfoundexception.getMessage());
+-        }
+-    }
+-
+     public static final StepSound soundPowderFootstep;
+     public static final StepSound soundWoodFootstep;
+     public static final StepSound soundGravelFootstep;
+@@ -797,7 +785,7 @@
+     public float slipperiness;
+     private String blockName;
+ 
+-    static 
++    static
+     {
+         soundPowderFootstep = new StepSound("stone", 1.0F, 1.0F);
+         soundWoodFootstep = new StepSound("wood", 1.0F, 1.0F);
+diff --unidirectional-new-file -aru src/minecraft/net/minecraft/src/mod_BuildCraftCore.java src_new/minecraft/net/minecraft/src/mod_BuildCraftCore.java
+--- src/minecraft/net/minecraft/src/mod_BuildCraftCore.java	2023-11-11 16:23:47.407700700 -0700
++++ src_new/minecraft/net/minecraft/src/mod_BuildCraftCore.java	2023-11-11 01:49:05.321159900 -0700
+@@ -1,6 +1,6 @@
+ // Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+ // Jad home page: http://www.kpdus.com/jad.html
+-// Decompiler options: packimports(3) braces deadcode 
++// Decompiler options: packimports(3) braces deadcode
+ 
+ package net.minecraft.src;
+ 
+@@ -13,7 +13,7 @@
+ import org.lwjgl.opengl.GL11;
+ 
+ // Referenced classes of package net.minecraft.src:
+-//            BaseModMp, BuildCraftCore, RenderItem, Block, 
++//            BaseModMp, BuildCraftCore, RenderItem, Block,
+ //            Tessellator, IBlockAccess, RenderBlocks, Packet230ModLoader
+ 
+ public class mod_BuildCraftCore extends BaseModMp
+@@ -285,7 +285,7 @@
+         rotateFace(frontY[1]);
+     }
+ 
+-    public void renderMarkerWithMeta(Block block, double d, double d1, double d2, 
++    public void renderMarkerWithMeta(Block block, double d, double d1, double d2,
+             int i)
+     {
+         Tessellator tessellator = Tessellator.instance;
+@@ -396,34 +396,13 @@
+ 
+     public void HandlePacket(Packet230ModLoader packet230modloader)
+     {
+-        static class _cls1
++        switch(PacketIds.values()[packet230modloader.packetType])
+         {
+-
+-            static final int $SwitchMap$net$minecraft$src$buildcraft$core$PacketIds[];
+-
+-            static 
+-            {
+-                $SwitchMap$net$minecraft$src$buildcraft$core$PacketIds = new int[PacketIds.values().length];
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$core$PacketIds[PacketIds.TileDescription.ordinal()] = 1;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$core$PacketIds[PacketIds.TileUpdate.ordinal()] = 2;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror1) { }
+-            }
+-        }
+-
+-        switch(_cls1..SwitchMap.net.minecraft.src.buildcraft.core.PacketIds[PacketIds.values()[packet230modloader.packetType].ordinal()])
+-        {
+-        case 1: // '\001'
++        case TileDescription: // '\001'
+             Utils.handleDescriptionPacket(packet230modloader);
+             break;
+ 
+-        case 2: // '\002'
++        case TileUpdate: // '\002'
+             Utils.handleUpdatePacket(packet230modloader);
+             break;
+         }
+diff --unidirectional-new-file -aru src/minecraft/net/minecraft/src/mod_BuildCraftEnergy.java src_new/minecraft/net/minecraft/src/mod_BuildCraftEnergy.java
+--- src/minecraft/net/minecraft/src/mod_BuildCraftEnergy.java	2023-11-11 16:23:47.407700000 -0700
++++ src_new/minecraft/net/minecraft/src/mod_BuildCraftEnergy.java	2023-11-11 01:41:19.990111600 -0700
+@@ -1,6 +1,6 @@
+ // Decompiled by Jad v1.5.8g. Copyright 2001 Pavel Kouznetsov.
+ // Jad home page: http://www.kpdus.com/jad.html
+-// Decompiler options: packimports(3) braces deadcode 
++// Decompiler options: packimports(3) braces deadcode
+ 
+ package net.minecraft.src;
+ 
+@@ -12,8 +12,8 @@
+ import net.minecraft.client.Minecraft;
+ 
+ // Referenced classes of package net.minecraft.src:
+-//            BaseModMp, mod_BuildCraftCore, BuildCraftEnergy, ModLoader, 
+-//            RenderEngine, ModLoaderMp, EntityPlayerSP, GuiScreen, 
++//            BaseModMp, mod_BuildCraftCore, BuildCraftEnergy, ModLoader,
++//            RenderEngine, ModLoaderMp, EntityPlayerSP, GuiScreen,
+ //            World
+ 
+ public class mod_BuildCraftEnergy extends BaseModMp
+@@ -27,12 +27,12 @@
+     {
+         super.ModsLoaded();
+         BuildCraftEnergy.ModsLoaded();
+-        mod_BuildCraftCore.blockByEntityRenders.put(new mod_BuildCraftCore.EntityRenderIndex(BuildCraftEnergy.engineBlock, 0), new RenderEngine("/net/minecraft/src/buildcraft/energy/gui/base_wood.png"));
+-        mod_BuildCraftCore.blockByEntityRenders.put(new mod_BuildCraftCore.EntityRenderIndex(BuildCraftEnergy.engineBlock, 1), new RenderEngine("/net/minecraft/src/buildcraft/energy/gui/base_stone.png"));
+-        mod_BuildCraftCore.blockByEntityRenders.put(new mod_BuildCraftCore.EntityRenderIndex(BuildCraftEnergy.engineBlock, 2), new RenderEngine("/net/minecraft/src/buildcraft/energy/gui/base_iron.png"));
++        mod_BuildCraftCore.blockByEntityRenders.put(new mod_BuildCraftCore.EntityRenderIndex(BuildCraftEnergy.engineBlock, 0), new buildcraft.energy.RenderEngine("/net/minecraft/src/buildcraft/energy/gui/base_wood.png"));
++        mod_BuildCraftCore.blockByEntityRenders.put(new mod_BuildCraftCore.EntityRenderIndex(BuildCraftEnergy.engineBlock, 1), new buildcraft.energy.RenderEngine("/net/minecraft/src/buildcraft/energy/gui/base_stone.png"));
++        mod_BuildCraftCore.blockByEntityRenders.put(new mod_BuildCraftCore.EntityRenderIndex(BuildCraftEnergy.engineBlock, 2), new buildcraft.energy.RenderEngine("/net/minecraft/src/buildcraft/energy/gui/base_iron.png"));
+         ModLoader.getMinecraftInstance().renderEngine.registerTextureFX(new TextureOilFX());
+         ModLoader.getMinecraftInstance().renderEngine.registerTextureFX(new TextureOilFlowFX());
+-        ModLoader.RegisterTileEntity(buildcraft.energy.TileEngine.class, "net.minecraft.src.buildcraft.energy.Engine", new RenderEngine());
++        ModLoader.RegisterTileEntity(buildcraft.energy.TileEngine.class, "net.minecraft.src.buildcraft.energy.Engine", new buildcraft.energy.RenderEngine());
+         ModLoaderMp.RegisterGUI(this, Utils.packetIdToInt(PacketIds.EngineSteamGUI));
+         ModLoaderMp.RegisterGUI(this, Utils.packetIdToInt(PacketIds.EngineCombustionGUI));
+         instance = this;
+@@ -46,34 +46,14 @@
+     public GuiScreen HandleGUI(int i)
+     {
+         TileEngine tileengine = new TileEngine();
+-        static class _cls1
+-        {
+-
+-            static final int $SwitchMap$net$minecraft$src$buildcraft$core$PacketIds[];
+-
+-            static 
+-            {
+-                $SwitchMap$net$minecraft$src$buildcraft$core$PacketIds = new int[PacketIds.values().length];
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$core$PacketIds[PacketIds.EngineSteamGUI.ordinal()] = 1;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror) { }
+-                try
+-                {
+-                    $SwitchMap$net$minecraft$src$buildcraft$core$PacketIds[PacketIds.EngineCombustionGUI.ordinal()] = 2;
+-                }
+-                catch(NoSuchFieldError nosuchfielderror1) { }
+-            }
+-        }
+ 
+-        switch(_cls1..SwitchMap.net.minecraft.src.buildcraft.core.PacketIds[Utils.intToPacketId(i).ordinal()])
++        switch(Utils.intToPacketId(i))
+         {
+-        case 1: // '\001'
++        case EngineSteamGUI: // '\001'
+             tileengine.engine = new EngineStone(tileengine);
+             return new GuiSteamEngine(ModLoader.getMinecraftInstance().thePlayer.inventory, tileengine);
+ 
+-        case 2: // '\002'
++        case EngineCombustionGUI: // '\002'
+             tileengine.engine = new EngineIron(tileengine);
+             return new GuiCombustionEngine(ModLoader.getMinecraftInstance().thePlayer.inventory, tileengine);
+         }

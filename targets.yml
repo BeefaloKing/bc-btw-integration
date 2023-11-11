@@ -1,0 +1,15 @@
+- archive: "buildcraft-client-A-core-2.1.1_PATCH.zip"
+  files:
+  - "BuildCraftCore.class"
+- archive: "buildcraft-client-B-energy-2.1.1_PATCH.zip"
+  files:
+  - "buildcraft/energy/Engine*.class"
+  - "buildcraft/energy/RenderEngine*.class"
+  - "buildcraft/energy/TileEngine.class"
+  - "BuildCraftEnergy.class"
+- archive: "buildcraft-client-B-factory-2.1.1_PATCH.zip"
+  files:
+  - "BuildCraftFactory.class"
+- archive: "mod_extrabuildcraftpipes-client-2.0.1.2_PATCH.zip"
+  files:
+  - "ExtraBuildcraftPipes/TileExtractionPipe.class"
