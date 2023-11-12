@@ -6,15 +6,20 @@ set is minimal and patches can be applied independantly.
 Unrelated, also patches a crash in ExtraBuildCraftPipes because I happen to be
 using it in my single player world right now.
 
-## Core
-Removes "Wooden Gear" in favor of BTW's "Gear".
+Compatible with:
+- Minecraft beta 1.7.3
+- BuildCraft 2.1.1
+- Better Than Wolves 2.94
+- ExtraBuildCraftPipes 2.0.1.2
 
+## Core
 Renames "Iron Gear" to "Steel Gear", and changes recipe to require BTW steel.
 
 ## Energy
 Renames "Redstone Engine" to "Wooden Engine".
 
-Wooden Engines now require continuous mechanical power from BTW to operate.
+Wooden Engines now require continuous mechanical power from BTW to operate. The
+axle must be placed at the back of the engine.
 
 ## Factory
 Changes "Automatic Crafting Table" recipe to require one Iron/Steel Gear

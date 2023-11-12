@@ -67,7 +67,7 @@ public class BuildCraftCore
             return;
         } else
         {
-            // Property property = mainConfiguration.getOrCreateIntProperty("woodenGearItem.id", 2, DefaultProps.WOODEN_GEAR_ID);
+            Property property = mainConfiguration.getOrCreateIntProperty("woodenGearItem.id", 2, DefaultProps.WOODEN_GEAR_ID);
             Property property1 = mainConfiguration.getOrCreateIntProperty("stoneGearItem.id", 2, DefaultProps.STONE_GEAR_ID);
             Property property2 = mainConfiguration.getOrCreateIntProperty("ironGearItem.id", 2, DefaultProps.IRON_GEAR_ID);
             Property property3 = mainConfiguration.getOrCreateIntProperty("goldenGearItem.id", 2, DefaultProps.GOLDEN_GEAR_ID);
@@ -75,12 +75,10 @@ public class BuildCraftCore
             mainConfiguration.save();
             gearsInitialized = true;
             CraftingManager craftingmanager = CraftingManager.getInstance();
-            // woodenGearItem = (new BuildCraftItem(Integer.parseInt(property.value))).setIconIndex(16).setItemName("woodenGearItem");
-            // craftingmanager.addRecipe(new ItemStack(woodenGearItem), new Object[] {
-            //     " S ", "S S", " S ", Character.valueOf('S'), Item.stick
-            // });
-            // Replace buildcraft gear with BTW gear.
-            woodenGearItem = mod_FCBetterThanWolves.fcGear;
+            woodenGearItem = (new BuildCraftItem(Integer.parseInt(property.value))).setIconIndex(16).setItemName("woodenGearItem");
+            craftingmanager.addRecipe(new ItemStack(woodenGearItem), new Object[] {
+                " S ", "S S", " S ", Character.valueOf('S'), Item.stick
+            });
             CoreProxy.addName(woodenGearItem, "Wooden Gear");
             stoneGearItem = (new BuildCraftItem(Integer.parseInt(property1.value))).setIconIndex(17).setItemName("stoneGearItem");
             craftingmanager.addRecipe(new ItemStack(stoneGearItem), new Object[] {
